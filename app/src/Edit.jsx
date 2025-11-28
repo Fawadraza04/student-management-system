@@ -82,7 +82,7 @@ const Edit = () => {
   );
 
   return (
-      <div className="flex-1 p-6 ml-64 bg-gray-900 text-white min-h-screen">
+      <div className="flex-1 p-4 lg:p-6 mt-16 lg:mt-0 lg:ml-64 bg-gray-900 text-white min-h-screen">
         <h2 className="text-2xl font-bold mb-6">Edit Student</h2>
         <form onSubmit={handleUpdate} className="space-y-4 max-w-2xl">
           <input

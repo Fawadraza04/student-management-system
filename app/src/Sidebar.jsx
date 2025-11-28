@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import {
@@ -11,16 +11,23 @@ import {
   FaChalkboardTeacher,
   FaBook,
   FaCalendarCheck,
+  FaBars,
+  FaTimes,
 } from "react-icons/fa";
 
 const Sidebar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
     navigate("/login");
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   const menuItems = [
@@ -34,17 +41,39 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-64 bg-gray-800 h-screen fixed left-0 top-0 flex flex-col overflow-hidden">
-      {/* Logo/Header */}
-      <div className="p-6 border-b border-gray-700 flex-shrink-0">
-        <div className="flex items-center gap-3">
-          <FaGraduationCap className="text-blue-500 text-3xl" />
-          <div>
-            <h1 className="text-xl font-bold text-white">Student Management</h1>
-            <p className="text-xs text-gray-400">Admin Panel</p>
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-700 transition"
+      >
+        {isMobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+      </button>
+
+      {/* Mobile Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={closeMobileMenu}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div
+        className={`w-64 bg-gray-800 h-screen fixed left-0 top-0 flex flex-col overflow-hidden z-40 transform transition-transform duration-300 ${
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0`}
+      >
+        {/* Logo/Header */}
+        <div className="p-6 border-b border-gray-700 flex-shrink-0">
+          <div className="flex items-center gap-3">
+            <FaGraduationCap className="text-blue-500 text-3xl" />
+            <div>
+              <h1 className="text-xl font-bold text-white">Student Management</h1>
+              <p className="text-xs text-gray-400">Admin Panel</p>
+            </div>
           </div>
         </div>
-      </div>
 
       {/* User Info */}
       {user && (
@@ -64,6 +93,7 @@ const Sidebar = () => {
               <li key={item.path}>
                 <Link
                   to={item.path}
+                  onClick={closeMobileMenu}
                   className={`flex items-center gap-3 p-3 rounded-lg transition ${
                     isActive
                       ? "bg-blue-600 text-white"
@@ -89,7 +119,8 @@ const Sidebar = () => {
           <span>Logout</span>
         </button>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

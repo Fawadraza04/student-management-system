@@ -107,7 +107,7 @@ const AttendanceManagement = () => {
     : [];
 
   return (
-    <div className="flex-1 p-6 ml-64 bg-gray-900 text-white min-h-screen">
+    <div className="flex-1 p-4 lg:p-6 mt-16 lg:mt-0 lg:ml-64 bg-gray-900 text-white min-h-screen">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold flex items-center gap-2">
           <FaCalendarCheck /> Attendance Management
@@ -137,7 +137,7 @@ const AttendanceManagement = () => {
       </div>
 
       <div className="bg-gray-800 p-6 rounded-lg mb-6">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block mb-2 text-sm font-medium">Select Course</label>
             <select
@@ -182,8 +182,8 @@ const AttendanceManagement = () => {
       </div>
 
       {viewMode === "mark" && selectedCourse && (
-        <div className="bg-gray-800 rounded-lg overflow-hidden">
-          <table className="w-full">
+        <div className="bg-gray-800 rounded-lg overflow-hidden overflow-x-auto">
+          <table className="w-full min-w-[600px]">
             <thead className="bg-gray-700">
               <tr className="text-left">
                 <th className="p-3 font-medium">Student ID</th>
@@ -263,8 +263,8 @@ const AttendanceManagement = () => {
       )}
 
       {viewMode === "view" && selectedCourse && (
-        <div className="bg-gray-800 rounded-lg overflow-hidden">
-          <table className="w-full">
+        <div className="bg-gray-800 rounded-lg overflow-hidden overflow-x-auto">
+          <table className="w-full min-w-[600px]">
             <thead className="bg-gray-700">
               <tr className="text-left">
                 <th className="p-3 font-medium">Student ID</th>

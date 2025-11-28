@@ -1,6 +1,6 @@
 # Student Management System
 
-A full-stack MERN (MongoDB, Express, React, Node.js) application for managing student records with authentication and admin dashboard.
+A comprehensive full-stack MERN (MongoDB, Express, React, Node.js) application for managing students, teachers, courses, attendance, and academic records. Features secure JWT authentication, interactive dashboards, and a fully responsive mobile-friendly interface.
 
 ## Features
 
@@ -23,13 +23,41 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing st
    - **Update**: Edit student information
    - **Delete**: Remove students from the system
 
-4. **Additional Features**
-   - Student profile view page
-   - Pagination on manage students page
-   - Search functionality (by name, class, or batch)
-   - Responsive sidebar navigation
-   - Logout functionality
-   - Token-based API authentication
+4. **Teacher Management**
+   - Add, edit, delete teachers
+   - Auto-generated Teacher IDs
+   - Teacher profiles with department, qualification, and experience
+   - Status management (Active/Inactive)
+
+5. **Course/Subject Management**
+   - Create and manage courses
+   - Link courses to teachers
+   - Course assignment to students
+   - Track course credits and details
+
+6. **Attendance Management**
+   - Mark attendance by course and date
+   - Status tracking (Present, Absent, Late)
+   - Bulk attendance marking
+   - View attendance records
+
+7. **Exam & Marks Management**
+   - Create exams (Quiz, Midterm, Final, Assignment)
+   - Add and manage student marks
+   - Automatic grade calculation (A+, A, B+, B, C, D, F)
+   - Bulk marks entry
+   - View exam results with grades
+
+8. **Additional Features**
+   - Student profile with enrolled courses and teachers
+   - Course assignment to students
+   - Advanced filtering and sorting
+   - Pagination on all list pages
+   - Search functionality
+   - Fully responsive design (mobile, tablet, desktop)
+   - Mobile-friendly hamburger menu
+   - Bulk delete operations
+   - Student status management
 
 ## Tech Stack
 

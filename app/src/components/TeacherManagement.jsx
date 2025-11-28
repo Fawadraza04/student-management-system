@@ -85,7 +85,7 @@ const TeacherManagement = () => {
   };
 
   return (
-    <div className="flex-1 p-6 ml-64 bg-gray-900 text-white min-h-screen">
+    <div className="flex-1 p-4 lg:p-6 mt-16 lg:mt-0 lg:ml-64 bg-gray-900 text-white min-h-screen">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold flex items-center gap-2">
           <FaChalkboardTeacher /> Teacher Management
@@ -115,7 +115,7 @@ const TeacherManagement = () => {
           <h3 className="text-xl font-bold mb-4">
             {editingTeacher ? "Edit Teacher" : "Add New Teacher"}
           </h3>
-          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               type="text"
               placeholder="Name *"
@@ -181,8 +181,8 @@ const TeacherManagement = () => {
         </div>
       )}
 
-      <div className="bg-gray-800 rounded-lg overflow-hidden">
-        <table className="w-full">
+      <div className="bg-gray-800 rounded-lg overflow-hidden overflow-x-auto">
+        <table className="w-full min-w-[700px]">
           <thead className="bg-gray-700">
             <tr className="text-left">
               <th className="p-3 font-medium">Teacher ID</th>

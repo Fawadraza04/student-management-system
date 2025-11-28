@@ -146,7 +146,7 @@ const Manage = () => {
   const uniqueBatches = [...new Set(students.map((s) => s.batchYear).filter(Boolean))];
 
   return (
-    <div className="flex-1 p-6 ml-64 bg-gray-900 text-white min-h-screen">
+    <div className="flex-1 p-4 lg:p-6 mt-16 lg:mt-0 lg:ml-64 bg-gray-900 text-white min-h-screen">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Manage Students</h2>
         {selectedStudents.length > 0 && (
@@ -161,7 +161,7 @@ const Manage = () => {
 
       {/* Search and Filters */}
       <div className="bg-gray-800 p-4 rounded-lg mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
           <input
             type="text"
             placeholder="Search by name, ID, class, or batch..."
@@ -223,8 +223,8 @@ const Manage = () => {
       </div>
 
       {/* Table */}
-      <div className="bg-gray-800 rounded-lg overflow-hidden">
-        <table className="w-full">
+      <div className="bg-gray-800 rounded-lg overflow-hidden overflow-x-auto">
+        <table className="w-full min-w-[800px]">
           <thead className="bg-gray-700">
             <tr className="text-left">
               <th className="p-3">

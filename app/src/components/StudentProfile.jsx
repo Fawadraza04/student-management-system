@@ -32,7 +32,7 @@ const StudentProfile = () => {
 
   if (loading) {
     return (
-      <div className="flex-1 p-6 ml-64 bg-gray-900 text-white min-h-screen flex items-center justify-center">
+      <div className="flex-1 p-4 lg:p-6 mt-16 lg:mt-0 lg:ml-64 bg-gray-900 text-white min-h-screen flex items-center justify-center">
         <div className="text-xl">Loading...</div>
       </div>
     );
@@ -40,14 +40,14 @@ const StudentProfile = () => {
 
   if (!student) {
     return (
-      <div className="flex-1 p-6 ml-64 bg-gray-900 text-white min-h-screen flex items-center justify-center">
+      <div className="flex-1 p-4 lg:p-6 mt-16 lg:mt-0 lg:ml-64 bg-gray-900 text-white min-h-screen flex items-center justify-center">
         <div className="text-xl">Student not found</div>
       </div>
     );
   }
 
   return (
-    <div className="flex-1 p-6 ml-64 bg-gray-900 text-white min-h-screen">
+    <div className="flex-1 p-4 lg:p-6 mt-16 lg:mt-0 lg:ml-64 bg-gray-900 text-white min-h-screen">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">

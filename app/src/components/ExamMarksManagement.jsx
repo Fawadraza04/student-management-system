@@ -178,7 +178,7 @@ const ExamMarksManagement = () => {
   }, [marksFormData.examId, marksFormData.courseId]);
 
   return (
-    <div className="flex-1 p-6 ml-64 bg-gray-900 text-white min-h-screen">
+    <div className="flex-1 p-4 lg:p-6 mt-16 lg:mt-0 lg:ml-64 bg-gray-900 text-white min-h-screen">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold flex items-center gap-2">
           <FaGraduationCap /> Exam & Marks Management
@@ -203,7 +203,7 @@ const ExamMarksManagement = () => {
         <div className="bg-gray-800 p-6 rounded-lg mb-6">
           <h3 className="text-xl font-bold mb-4">Create New Exam</h3>
           <form onSubmit={handleExamSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 type="text"
                 placeholder="Exam Name *"
@@ -273,7 +273,7 @@ const ExamMarksManagement = () => {
         <div className="bg-gray-800 p-6 rounded-lg mb-6">
           <h3 className="text-xl font-bold mb-4">Add Marks</h3>
           <form onSubmit={handleMarksSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <select
                 value={marksFormData.examId}
                 onChange={(e) => setMarksFormData({ ...marksFormData, examId: e.target.value, marksList: [] })}
@@ -351,9 +351,9 @@ const ExamMarksManagement = () => {
         </div>
       )}
 
-      <div className="bg-gray-800 rounded-lg overflow-hidden mb-6">
+      <div className="bg-gray-800 rounded-lg overflow-hidden mb-6 overflow-x-auto">
         <h3 className="text-xl font-bold p-4 border-b border-gray-700">Exams</h3>
-        <table className="w-full">
+        <table className="w-full min-w-[800px]">
           <thead className="bg-gray-700">
             <tr className="text-left">
               <th className="p-3 font-medium">Exam Name</th>
@@ -404,7 +404,7 @@ const ExamMarksManagement = () => {
       </div>
 
       {selectedExam && (
-        <div className="bg-gray-800 rounded-lg overflow-hidden">
+        <div className="bg-gray-800 rounded-lg overflow-hidden overflow-x-auto">
           <div className="p-4 border-b border-gray-700 flex justify-between items-center">
             <h3 className="text-xl font-bold">
               Marks for {selectedExam.examName} ({selectedExam.courseId?.courseCode})
@@ -416,7 +416,7 @@ const ExamMarksManagement = () => {
               Close
             </button>
           </div>
-          <table className="w-full">
+          <table className="w-full min-w-[700px]">
             <thead className="bg-gray-700">
               <tr className="text-left">
                 <th className="p-3 font-medium">Student ID</th>
