@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaEdit, FaTrash, FaBook, FaUserPlus } from "react-icons/fa";
+import API_BASE_URL from "../config/api";
 
 const CourseManagement = () => {
   const [courses, setCourses] = useState([]);
@@ -25,7 +26,7 @@ const CourseManagement = () => {
 
   const fetchCourses = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/courses");
+      const res = await axios.get(`${API_BASE_URL}/api/courses`);
       setCourses(res.data || []);
     } catch (error) {
       console.error("Error fetching courses:", error);
@@ -34,7 +35,7 @@ const CourseManagement = () => {
 
   const fetchTeachers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/teachers");
+      const res = await axios.get(`${API_BASE_URL}/api/teachers`);
       setTeachers(res.data || []);
     } catch (error) {
       console.error("Error fetching teachers:", error);
@@ -45,10 +46,10 @@ const CourseManagement = () => {
     e.preventDefault();
     try {
       if (editingCourse) {
-        await axios.put(`http://localhost:5000/api/course/${editingCourse._id}`, formData);
+        await axios.put(`${API_BASE_URL}/api/course/${editingCourse._id}`, formData);
         alert("Course updated successfully!");
       } else {
-        await axios.post("http://localhost:5000/api/course", formData);
+        await axios.post(`${API_BASE_URL}/api/course`, formData);
         alert("Course added successfully!");
       }
       setShowForm(false);
@@ -87,7 +88,7 @@ const CourseManagement = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this course?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/course/${id}`);
+        await axios.delete(`${API_BASE_URL}/api/course/${id}`);
         alert("Course deleted!");
         fetchCourses();
       } catch (error) {

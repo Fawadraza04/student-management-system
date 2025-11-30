@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaBook } from "react-icons/fa";
+import API_BASE_URL from "./config/api";
 
 const Edit = () => {
   const { id } = useParams();
@@ -21,7 +22,7 @@ const Edit = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/student/${id}`)
+      .get(`${API_BASE_URL}/api/student/${id}`)
       .then((res) => {
         const student = res.data;
         setFormData({
@@ -37,7 +38,7 @@ const Edit = () => {
       });
     
     axios
-      .get("http://localhost:5000/api/courses")
+      .get(`${API_BASE_URL}/api/courses`)
       .then((res) => {
         setAvailableCourses(res.data || []);
       })
@@ -50,11 +51,11 @@ const Edit = () => {
     e.preventDefault();
     try {
       const { courses, ...studentData } = formData;
-      await axios.put(`http://localhost:5000/api/student/${id}`, studentData);
+      await axios.put(`${API_BASE_URL}/api/student/${id}`, studentData);
       
       // Update courses separately
       if (courses) {
-        await axios.put(`http://localhost:5000/api/student/${id}/courses`, {
+        await axios.put(`${API_BASE_URL}/api/student/${id}/courses`, {
           courseIds: courses
         });
       }

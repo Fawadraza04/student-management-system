@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import API_BASE_URL from "./config/api";
 
 const Dashboard = () => {
   const [students, setStudents] = useState([]);
@@ -20,7 +21,7 @@ const Dashboard = () => {
 
   const fetchStudent = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/students");
+      const res = await axios.get(`${API_BASE_URL}/api/students`);
       const data = res.data || [];
       setStudents(data);
       setTotalStudents(data.length);

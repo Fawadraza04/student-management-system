@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaArrowLeft, FaEdit, FaEnvelope, FaPhone, FaMapMarkerAlt, FaUser, FaGraduationCap, FaCalendarAlt } from "react-icons/fa";
+import API_BASE_URL from "../config/api";
 
 const StudentProfile = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ const StudentProfile = () => {
 
   const fetchStudent = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/student/${id}`);
+      const res = await axios.get(`${API_BASE_URL}/api/student/${id}`);
       setStudent(res.data);
     } catch (error) {
       console.error("Error fetching student:", error);

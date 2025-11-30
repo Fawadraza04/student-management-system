@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from "./config/api";
 
 const Add = () => {
   const [studentData, setStudentData] = useState({
@@ -18,7 +19,7 @@ const Add = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/student", studentData);
+      await axios.post(`${API_BASE_URL}/api/student`, studentData);
       alert("Student added: " + studentData.name);
       setStudentData({ name: "", class: "", batchYear: "", gender: "", email: "", phone: "", address: "", status: "Active" });
       navigate("/manage");

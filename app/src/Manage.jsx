@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaEdit, FaTrash, FaEye, FaFilter, FaSort } from "react-icons/fa";
+import API_BASE_URL from "./config/api";
 
 const Manage = () => {
   const [students, setStudents] = useState([]);
@@ -29,7 +30,7 @@ const Manage = () => {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/students");
+      const res = await axios.get(`${API_BASE_URL}/api/students`);
       setStudents(res.data || []);
     } catch (error) {
       console.error("Error fetching students:", error);
@@ -43,7 +44,7 @@ const Manage = () => {
   const deleteStudent = async (id) => {
     if (window.confirm("Are you sure you want to delete this student?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/student/${id}`);
+        await axios.delete(`${API_BASE_URL}/api/student/${id}`);
         setStudents(students.filter((s) => s._id !== id));
         setSelectedStudents(selectedStudents.filter((sid) => sid !== id));
         alert("Student deleted!");
@@ -60,7 +61,7 @@ const Manage = () => {
     }
     if (window.confirm(`Are you sure you want to delete ${selectedStudents.length} student(s)?`)) {
       try {
-        await axios.post("http://localhost:5000/api/students/bulk-delete", {
+        await axios.post(`${API_BASE_URL}/api/students/bulk-delete`, {
           ids: selectedStudents,
         });
         setStudents(students.filter((s) => !selectedStudents.includes(s._id)));

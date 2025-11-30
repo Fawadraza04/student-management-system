@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaGraduationCap, FaEdit, FaTrash, FaUserPlus, FaChartLine } from "react-icons/fa";
+import API_BASE_URL from "../config/api";
 
 const ExamMarksManagement = () => {
   const [exams, setExams] = useState([]);
@@ -38,7 +39,7 @@ const ExamMarksManagement = () => {
 
   const fetchExams = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/exams");
+      const res = await axios.get(`${API_BASE_URL}/api/exams`);
       setExams(res.data || []);
     } catch (error) {
       console.error("Error fetching exams:", error);
@@ -47,7 +48,7 @@ const ExamMarksManagement = () => {
 
   const fetchCourses = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/courses");
+      const res = await axios.get(`${API_BASE_URL}/api/courses`);
       setCourses(res.data || []);
     } catch (error) {
       console.error("Error fetching courses:", error);
@@ -56,7 +57,7 @@ const ExamMarksManagement = () => {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/students");
+      const res = await axios.get(`${API_BASE_URL}/api/students`);
       setStudents(res.data || []);
     } catch (error) {
       console.error("Error fetching students:", error);
@@ -66,7 +67,7 @@ const ExamMarksManagement = () => {
   const fetchMarks = async () => {
     if (!selectedExam) return;
     try {
-      const res = await axios.get("http://localhost:5000/api/marks", {
+      const res = await axios.get(`${API_BASE_URL}/api/marks`, {
         params: { examId: selectedExam._id },
       });
       setMarks(res.data || []);
@@ -78,7 +79,7 @@ const ExamMarksManagement = () => {
   const handleExamSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/exam", examFormData);
+      await axios.post(`${API_BASE_URL}/api/exam`, examFormData);
       alert("Exam created successfully!");
       setShowExamForm(false);
       setExamFormData({
@@ -107,7 +108,7 @@ const ExamMarksManagement = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/marks/bulk", {
+      await axios.post(`${API_BASE_URL}/api/marks/bulk`, {
         examId: marksFormData.examId,
         courseId: marksFormData.courseId,
         marksList: marksFormData.marksList,
@@ -128,7 +129,7 @@ const ExamMarksManagement = () => {
   const handleDeleteExam = async (id) => {
     if (window.confirm("Are you sure you want to delete this exam?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/exam/${id}`);
+        await axios.delete(`${API_BASE_URL}/api/exam/${id}`);
         alert("Exam deleted!");
         fetchExams();
       } catch (error) {
@@ -140,7 +141,7 @@ const ExamMarksManagement = () => {
   const handleDeleteMarks = async (id) => {
     if (window.confirm("Are you sure you want to delete these marks?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/marks/${id}`);
+        await axios.delete(`${API_BASE_URL}/api/marks/${id}`);
         alert("Marks deleted!");
         fetchMarks();
       } catch (error) {

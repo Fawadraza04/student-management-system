@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaCalendarCheck, FaCheck, FaTimes, FaClock } from "react-icons/fa";
+import API_BASE_URL from "../config/api";
 
 const AttendanceManagement = () => {
   const [students, setStudents] = useState([]);
@@ -23,7 +24,7 @@ const AttendanceManagement = () => {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/students");
+      const res = await axios.get(`${API_BASE_URL}/api/students`);
       setStudents(res.data || []);
     } catch (error) {
       console.error("Error fetching students:", error);
@@ -32,7 +33,7 @@ const AttendanceManagement = () => {
 
   const fetchCourses = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/courses");
+      const res = await axios.get(`${API_BASE_URL}/api/courses`);
       setCourses(res.data || []);
     } catch (error) {
       console.error("Error fetching courses:", error);
@@ -41,7 +42,7 @@ const AttendanceManagement = () => {
 
   const fetchAttendance = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/attendance", {
+      const res = await axios.get(`${API_BASE_URL}/api/attendance`, {
         params: { courseId: selectedCourse, date: selectedDate },
       });
       setAttendanceList(res.data || []);
@@ -82,7 +83,7 @@ const AttendanceManagement = () => {
         remarks: item.remarks || "",
       }));
 
-      await axios.post("http://localhost:5000/api/attendance/bulk", {
+      await axios.post(`${API_BASE_URL}/api/attendance/bulk`, {
         courseId: selectedCourse,
         date: selectedDate,
         attendanceList: attendanceData,

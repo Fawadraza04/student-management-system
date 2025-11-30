@@ -12,11 +12,13 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // JWT Secret (in production, use environment variable)
-const JWT_SECRET = "your-secret-key-change-in-production";
+const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-in-production";
 
 // MongoDB Connection
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/stu3";
+
 mongoose
-  .connect("mongodb://localhost:27017/stu3")
+  .connect(MONGODB_URI)
   .then(() => console.log("DB connected"))
   .catch((err) => console.log("DB Error:", err));
 
@@ -718,7 +720,7 @@ app.put("/api/student/:id/courses", authenticateToken, async (req, res) => {
 });
 
 // Start Server
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
