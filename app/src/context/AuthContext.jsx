@@ -45,25 +45,39 @@ export const AuthProvider = ({ children }) => {
       axios.defaults.headers.common["Authorization"] = `Bearer ${newToken}`;
       return { success: true };
     } catch (error) {
+      console.error("Login error:", error);
+      if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
+        return {
+          success: false,
+          error: "Cannot connect to server. Please make sure backend is running on port 5000",
+        };
+      }
       return {
         success: false,
-        error: error.response?.data?.error || "Login failed",
+        error: error.response?.data?.error || error.message || "Login failed",
       };
     }
   };
 
   const register = async (username, email, password) => {
     try {
-      await axios.post(`${API_BASE_URL}/api/auth/register`, {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, {
         username,
         email,
         password,
       });
       return { success: true };
     } catch (error) {
+      console.error("Registration error:", error);
+      if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
+        return {
+          success: false,
+          error: "Cannot connect to server. Please make sure backend is running on port 5000",
+        };
+      }
       return {
         success: false,
-        error: error.response?.data?.error || "Registration failed",
+        error: error.response?.data?.error || error.message || "Registration failed",
       };
     }
   };
