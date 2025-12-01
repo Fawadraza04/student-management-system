@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "server": "node server.js",
     "start": "node server.js",
-    "start:frontend": "npx serve -s dist -l 3000"
+    "start:frontend": "serve -s dist -l $PORT"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
@@ -28,7 +28,8 @@
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.9.4",
-    "recharts": "^3.3.0"
+    "recharts": "^3.3.0",
+    "serve": "^14.2.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
