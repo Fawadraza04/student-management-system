@@ -1,0 +1,10 @@
+node_modules
+dist
+src
+public
+vite.config.js
+index.html
+*.md
+.env
+.env.local
+
