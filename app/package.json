@@ -8,11 +8,12 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "echo 'Backend only - skipping build'",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "node server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:frontend": "npx serve -s dist -l 3000"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
