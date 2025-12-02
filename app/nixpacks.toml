@@ -1,8 +1,0 @@
-providers = ["nodejs"]
-
-[phases.build]
-cmds = ["npm install", "npm run build"]
-
-[phases.start]
-cmd = "npx serve -s dist -l $PORT"
-

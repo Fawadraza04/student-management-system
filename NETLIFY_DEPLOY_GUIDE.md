@@ -52,3 +52,7 @@ Ab frontend bhi deploy ho gaya hai!
 - **404 Error:** `_redirects` file check karo `app/public/` mein
 - **API Error:** `VITE_API_URL` environment variable check karo
 
+
+
+
+

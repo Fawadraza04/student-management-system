@@ -5,7 +5,9 @@ Frontend service start nahi ho rahi hai.
 
 ## Solutions
 
-### Solution 1: Start Command Fix (Recommended)
+### Solution 1: Start Command Fix (Recommended) ✅ FIXED
+
+**`serve` package ab dependencies mein add ho gaya hai!**
 
 Frontend service ke liye start command change karo:
 
@@ -13,11 +15,11 @@ Frontend service ke liye start command change karo:
 2. "Settings" tab → "Deploy" section
 3. "Start Command" field mein:
    ```
-   npx serve -s dist -l $PORT
+   npm run start:frontend
    ```
-   Ya:
+   Ya directly:
    ```
-   npm install -g serve && serve -s dist -l $PORT
+   serve -s dist -l $PORT
    ```
 4. Save karo
 5. Redeploy karo

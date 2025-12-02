@@ -18,8 +18,8 @@ import ExamMarksManagement from "./components/ExamMarksManagement";
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
+    <BrowserRouter>
+      <Routes>
           {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -127,8 +127,8 @@ function App() {
 
           {/* Default redirect */}
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        </Routes>
-      </BrowserRouter>
+      </Routes>
+    </BrowserRouter>
     </AuthProvider>
   );
 }
