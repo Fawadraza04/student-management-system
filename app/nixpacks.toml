@@ -1,9 +1,9 @@
-[phases.setup]
-nixPkgs = ["nodejs-20_x"]
+[providers]
+node = "20"
 
 [phases.build]
 cmds = ["npm install", "npm run build"]
 
 [phases.start]
-cmd = "npm run start:frontend"
+cmd = "npx serve -s dist -l $PORT"
 
