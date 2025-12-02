@@ -1,6 +1,3 @@
-src/
-public/
-dist/
-vite.config.js
-*.md
-.env.local
+node_modules
+.git
+.env
