@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "server": "node server.js",
     "start": "node server.js",
-    "start:frontend": "serve -s dist -l ${PORT:-8080}"
+    "start:frontend": "serve -s dist -l $PORT"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
