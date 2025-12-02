@@ -2,6 +2,5 @@ src/
 public/
 dist/
 vite.config.js
-index.html
 *.md
 .env.local
