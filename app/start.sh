@@ -7,8 +7,8 @@ fi
 
 # Use Railway's PORT environment variable
 PORT=${PORT:-8080}
-echo "Starting Express server on 0.0.0.0:$PORT..."
+echo "Starting server on port $PORT..."
 
-# Use Express to serve static files (guaranteed 0.0.0.0 binding)
-node serve-frontend.js
+# Simple solution: Use serve with explicit host binding via environment
+HOST=0.0.0.0 PORT=$PORT npx serve -s dist -l $PORT
 
