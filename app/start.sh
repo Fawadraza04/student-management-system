@@ -7,8 +7,8 @@ fi
 
 # Use Railway's PORT environment variable
 PORT=${PORT:-8080}
-echo "Starting serve on port $PORT..."
+echo "Starting serve on 0.0.0.0:$PORT..."
 
-# Start serve with the PORT
-npx serve -s dist -l $PORT
+# Start serve with 0.0.0.0 to bind to all interfaces (required for Railway)
+npx serve -s dist -l tcp://0.0.0.0:$PORT
 
