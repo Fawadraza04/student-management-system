@@ -10,13 +10,21 @@ const app = express();
 // Middleware
 // CORS configuration - allow frontend origin
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'https://student-management-frontend-production-1ddb.up.railway.app',
+  origin: [
+    'https://student-management-frontend-production-1ddb.up.railway.app',
+    process.env.FRONTEND_URL
+  ].filter(Boolean),
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+
+// Handle preflight requests explicitly
+app.options('*', cors(corsOptions));
 
 // JWT Secret (in production, use environment variable)
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-in-production";
