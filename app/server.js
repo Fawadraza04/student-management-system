@@ -8,7 +8,14 @@ const jwt = require("jsonwebtoken");
 const app = express();
 
 // Middleware
-app.use(cors());
+// CORS configuration - allow frontend origin
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || 'https://student-management-frontend-production-1ddb.up.railway.app',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // JWT Secret (in production, use environment variable)
