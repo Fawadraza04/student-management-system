@@ -5,7 +5,7 @@
     "buildCommand": "npm install && npm run build"
   },
   "deploy": {
-    "startCommand": "npx serve -s dist -l $PORT",
+    "startCommand": "if [ -d dist ]; then npx serve -s dist -l $PORT; else echo 'ERROR: dist folder not found!'; exit 1; fi",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }
