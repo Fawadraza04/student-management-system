@@ -1,39 +1,27 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+const DIST_DIR = path.join(__dirname, 'dist');
 
-// Serve static files from dist directory
-app.use(express.static(path.join(__dirname, 'dist'), {
-  fallthrough: true // Allow fallthrough to next middleware if file not found
-}));
+// Serve static files
+app.use(express.static(DIST_DIR));
 
-// Handle React Router - serve index.html for all non-API routes (Express 5 compatible)
-app.use((req, res, next) => {
-  // Skip API routes
-  if (req.path.startsWith('/api')) {
-    return next();
-  }
-  
-  // Check if file exists in dist
-  const filePath = path.join(__dirname, 'dist', req.path);
-  if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-    return next(); // Let static middleware handle it
-  }
-  
-  // Serve index.html for React Router
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'), (err) => {
-    if (err) {
-      console.error('Error serving index.html:', err);
-      res.status(500).send('Internal Server Error');
-    }
-  });
+// Catch-all handler for React Router - must be last
+app.use((req, res) => {
+  res.sendFile(path.join(DIST_DIR, 'index.html'));
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Frontend server running on http://0.0.0.0:${PORT}`);
-  console.log(`Serving files from: ${path.join(__dirname, 'dist')}`);
+// Start server on 0.0.0.0 (all interfaces) for Railway
+const server = app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Frontend server running on http://0.0.0.0:${PORT}`);
+  console.log(`📁 Serving files from: ${DIST_DIR}`);
+});
+
+// Error handling
+server.on('error', (err) => {
+  console.error('❌ Server error:', err);
+  process.exit(1);
 });
 
