@@ -7,8 +7,11 @@ fi
 
 # Use Railway's PORT environment variable
 PORT=${PORT:-8080}
-echo "Starting serve on port $PORT..."
+echo "Starting serve on 0.0.0.0:$PORT..."
 
-# Start serve - Railway automatically binds to 0.0.0.0
+# Set HOST to 0.0.0.0 for Railway (serve package uses HOST env var)
+export HOST=0.0.0.0
+
+# Start serve with host binding
 npx serve -s dist -l $PORT
 
